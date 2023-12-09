@@ -41,10 +41,26 @@ function deleteProduct(id) {
         turnOffLoading();
       });
     }
+    function validateForm() {
+      var ten = document.getElementById("TenSP").value;
+      var gia = document.getElementById("GiaSP").value;
+      var hinhAnh = document.getElementById("HinhSP").value;
+      var loai = document.getElementById("LoaiSP").value;
+    
+      if (!ten || !gia || !hinhAnh || !loai) {
+        // Nếu có bất kỳ ô input nào bỏ trống, hiển thị thông báo và ngăn chặn việc submit
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return false;
+      }
+    
+      return true;
+    }
     
     function createProduct() {
       console.log("yes");
-      
+      if (!validateForm()) {
+        return;
+      }
       var product = getDataForm();
     
       axios({
@@ -61,7 +77,7 @@ function deleteProduct(id) {
     
     
     function editProduct(id) {
-      
+     
       idEdit = id;
       $("#myModal").modal("show");
       
@@ -88,6 +104,9 @@ function deleteProduct(id) {
   }
   
   function updateProduct() {
+    if (!validateForm()) {
+      return;
+    }
     var product = getDataForm();
     
     axios({

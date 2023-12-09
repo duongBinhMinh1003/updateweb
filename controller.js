@@ -23,15 +23,29 @@ function renderProductListUser(productArr) {
 }
 
 
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
-
+function validatePassword(password) {
+  // Password should be at least 8 characters long
+  return password.length >= 8;
+}
 
 
 
 const getDataFormDangKi = () => { 
     var emailUser = document.getElementById("emailUser").value;
     var mkUser = document.getElementById("mkUser").value;
-   
+    if (!validateEmail(emailUser)) {
+      alert('Invalid email format');
+      return null;
+  }
+  if (!validatePassword(mkUser)) {
+    alert('Password must be at least 8 characters long');
+    return null;
+}
    
     return {
       emailUser: emailUser,

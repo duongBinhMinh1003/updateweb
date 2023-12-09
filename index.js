@@ -27,7 +27,7 @@ function fetchProductListUser() {
     console.log("yes");
     
     var product = getDataFormDangKi();
-    
+    if(product){
     axios({
       url: "https://653122fa4d4c2e3f333c72b8.mockapi.io/foods",
       method: "POST",
@@ -40,6 +40,7 @@ function fetchProductListUser() {
     })
     .catch(function (err) {});
   }
+}
   fetchProductListUser();
 
 
